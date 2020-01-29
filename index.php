@@ -18,7 +18,7 @@ if(mysqli_num_rows($result2)>0)
 while($row=mysqli_fetch_assoc($result2))	
 {
 if ($row["auth"]==1)
-		{header('location:manager.php');} 
+		{header('location:managerPage.php');} 
         else{header('location:options.php');}
 }
 }
