@@ -20,17 +20,24 @@
     </div>
 <!-- Sidebar Menu -->
 <nav class="mt-2">
+<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
+           <li class="nav-item has-treeview menu-open">
+            <a href="registration.php" class="nav-link active">
+               <p>
+                Add New Employee
+               </p>
+              </a>
+              </li>
+              </ul>
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
       <!-- Add icons to the links using the .nav-icon class
            with font-awesome or any other icon font library -->
            <li class="nav-item has-treeview menu-open">
+            
+             
             <a href="#" class="nav-link active">
-              <p>
-                Add New Employee
-               </p>
-              </a>
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Options
               <i class="right fas fa-angle-left"></i>
@@ -50,35 +57,11 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="./index3.html" class="nav-link">
+                  <a href="offer.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Change in Offers</p>
                   </a>
-                </li>
-                <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Rate Of Sections</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>product preference Grade</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Adminstrative Message</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Proposal</p>
-                    </a>
-                  </li>  
+                </li>  
            </ul>
            
 </li>
