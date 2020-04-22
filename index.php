@@ -1,33 +1,20 @@
 <?php
-
-require 'connection.PHP';
+session_start();
+require 'connection.php';
 
  if(isset($_POST['signIn']))
 {
 
-$uname = $_POST['username'];
-$pass= $_POST['password']; 
-$query="SELECT `id` FROM `log_in` WHERE user_name="."'".$uname."'"." AND password ="."'".$pass."'";
+$_SESSION['uname'] = $_POST['username'];
+$_SESSION['pass']= $_POST['password']; 
+$query="SELECT `id` FROM `log_in` WHERE user_name="."'".$_SESSION['uname']."'"." AND password ="."'".$_SESSION['pass']."'";
 $result = mysqli_query($conn,$query);
 if (mysqli_num_rows($result)==1)
 {
-$query2="SELECT `auth` FROM `log_in` WHERE user_name="."'".$uname."'"." AND password ="."'".$pass."'";
-$result2 = mysqli_query($conn,$query2);
-if(mysqli_num_rows($result2)>0)
-{
-while($row=mysqli_fetch_assoc($result2))	
-{
-if ($row["auth"]==1)
-		{header('location:managerPage.php');} 
-        else{header('location:options.php');}
+  header('location:managerPage.php');
+}else{
+  header('location:index.php');
 }
-}
-}
-else
-{
-	header('location:index.php');
-
-}	
 }
 
 ?>
@@ -62,7 +49,7 @@ else
                 <div class="card-body login-card-body">
                   <p class="login-box-msg">Sign in to start your session</p>
                   
-      <form action=" " method="post">
+      <form action=" "  method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control"name="username" placeholder="User Name">
           <div class="input-group-append">

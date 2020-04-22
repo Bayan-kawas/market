@@ -35,13 +35,54 @@ require 'connection.PHP';
      </div>
     <!-- right col -->
      <div class="row">
-     <?php
+      <section class="col-lg-5 connectedSortable">
+      <div class="box box-primary">
+            <div class="box-header with-border">
+              <!-- <h3 class="box-title">Quick Example</h3> -->
+              <h4>Remove selected proposals</h4>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form" action=" " method="post">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputMessage">From id</label>
+                  <input type="number" name="idfrom" class="form-control" id="exampleInputEmail1" min=1 required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputMessage"> To id </label>
+                  <input type="number" name="idto" class="form-control" id="exampleInputEmail1" min=1 required>
+                </div>
+                </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="clear" value="insertitem" required>Remove Selected Proposals </button>
+              <br/>
+              </div>
+            </form>
+            <form role="form" action=" " method="post">
+            <label for="exampleInputMessage">Remove All Proposals</label>
+              <div class="box-footer">
+                <button type="submit" class="btn btn-primary" name="clearall" value="insertitem" required>Remove All Proposals </button>
+              <br/>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+         
+            <!-- /.row -->
+        </section>
+        
+          <!-- /.Left col -->
+          <?php
       $sql="SELECT * FROM `proposals` WHERE 1";
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)>0)
         {?>
       <section class="col-lg-7 connectedSortable">
-         <div class="card">
+        <!-- /.col (LEFT) -->
+        <div class="card">
               <!-- /.card-header -->
           <div class="card-body table-responsive p-0" style="height: 300px;">
            <table class="table table-head-fixed text-nowrap table table-hover" >    
@@ -66,33 +107,10 @@ require 'connection.PHP';
           </div>
           <!-- /.card-body -->
         <!-- /.card -->
-         </div>
-            <!-- /.row -->
-        </section>
-        <?php }
-                  ?>
-          <!-- /.Left col -->
-      <section class="col-lg-5 connectedSortable">
-        <!-- /.col (LEFT) -->
-      
-            <!-- LINE CHART -->
-            <div class="card card-info">
-              <div class="card-header">
-              <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <canvas id="barChart"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-          <!-- /.col (RIGHT) -->
-  </section>
+         </div>  
+          <!-- /.col (lift) -->
+      </section>
+         <?php } ?>
   </div>
 </div>
 </section>
@@ -108,5 +126,48 @@ require 'connection.PHP';
 </html>
 <?php
  require 'scripts.php';
- ?>
  
+ //proposal
+//delete selected proposal
+if (isset($_POST['clear']))
+{
+ $from=$_POST['idfrom'];
+ $to=$_POST['idto'];
+$sql2="SELECT `id` FROM `proposals` WHERE id=".$from;
+$result1=mysqli_query($conn,$sql2);
+$sql3="SELECT `id` FROM `proposals` WHERE id=".$to;
+$result2=mysqli_query($conn,$sql3);
+if(mysqli_num_rows($result1)>0&&mysqli_num_rows($result2)>0)
+ {
+
+
+  for($i=$from;$i<=$to;$i++)
+   {
+    $sql="DELETE FROM `proposals` WHERE id=".$i;
+    if(mysqli_query($conn,$sql))
+      {
+     echo"deleted proposal number".$i."<br>";
+     echo "<meta http-equiv='refresh' content='0'>";
+      }
+else {
+  echo "not deleted proposal number".$i."<br>";
+     }
+   }
+  }else {header("location:proposal.php");}
+}
+
+//delet all proposal
+if (isset($_POST['clearall']))
+{ 
+$sql="DELETE FROM `proposals` WHERE 1";
+    if(mysqli_query($conn,$sql))
+   {
+  echo"Deleted All Proposals";
+  echo "<meta http-equiv='refresh' content='0'>";
+   }
+else {
+  echo "Not Deleted All Proposals";
+     }
+}
+
+
